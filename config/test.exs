@@ -7,9 +7,6 @@ config :pii_detector, PiiDetectorWeb.Endpoint,
   secret_key_base: "ZKNBx0XJlAmX3b62BXl4kz7pW0aI5F3x1xwFj0MR9lhNz/SiItk8kBVQ6oXYvb/c",
   server: false
 
-# In test we don't send emails.
-config :pii_detector, PiiDetector.Mailer, adapter: Swoosh.Adapters.Test
-
 # Print only warnings and errors during test
 config :logger, level: :warn
 

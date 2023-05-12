@@ -8,14 +8,16 @@ defmodule PiiDetector.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      PiiDetector.Repo,
       # Start the Telemetry supervisor
       PiiDetectorWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: PiiDetector.PubSub},
       # Start the Endpoint (http/https)
-      PiiDetectorWeb.Endpoint
+      PiiDetectorWeb.Endpoint,
       # Start a worker by calling: PiiDetector.Worker.start_link(arg)
       # {PiiDetector.Worker, arg}
+      PiiDetector.Vault
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

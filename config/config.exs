@@ -7,6 +7,15 @@
 # General application configuration
 import Config
 
+config :pii_detector, ecto_repos: [PiiDetector.Repo]
+
+config :pii_detector, PiiDetector.Repo,
+  database: "pii_vault",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  pool_size: 10
+
 # Configures the endpoint
 config :pii_detector, PiiDetectorWeb.Endpoint,
   url: [host: "localhost"],
@@ -14,17 +23,13 @@ config :pii_detector, PiiDetectorWeb.Endpoint,
   pubsub_server: PiiDetector.PubSub,
   live_view: [signing_salt: "9+6/6mxn"]
 
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :pii_detector, PiiDetector.Mailer, adapter: Swoosh.Adapters.Local
-
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
+# Cloak
+config :pii_detector, PiiDetector.Vault,
+  ciphers: [
+    default:
+      {Cloak.Ciphers.AES.GCM,
+       tag: "AES.GCM.V1", key: Base.decode64!("8VMOSBPgRMn3bWtdHNCqJ7mLsfdwd31I7y5qU4peI/E=")}
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
