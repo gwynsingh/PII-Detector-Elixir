@@ -23,10 +23,10 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ### PII detector api
 - Call Pii detection api . Example 
 ```
- curl --header "Content-Type: application/json" \
-  --request POST \
-  --data '{"document":"My name is John Doe. My phone number is 9414175514 . My credit card number is 1234-5678-9012-3456 . My email is john.doe@example.in. My date of birth is 30th July 1992. My ip is 192.168.0.1. And my aadhar is 2345 4567 5829 . My Pan is ABCJH9034S . My dl is HR-0619850034761 "}' \
-  http://localhost:4000/api/pii/text
+    POST  /api/pii/text
+    {
+    "document": "My name is John Doe. My phone number is 9414175514 . My credit card number is 1234-5678-9012-3456 . My email is john.doe@example.in. My date of birth is 30th July 1992. My ip is 192.168.0.1. And my aadhar is 2345 4567 5829 . My Pan is ABCJH9034S . My dl is HR-0619850034761 "
+    }
 ```
 - Response : 
 ```
